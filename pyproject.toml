@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "storozh"
+version = "1.0.0"
+description = "Сторож: сканер файлов по сигнатурам и эвристикам с карантином и HTML-отчётом"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "whysafe" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+storozh = "storozh.cli:main"
+
+[tool.setuptools]
+packages = ["storozh"]
+
+[tool.setuptools.package-data]
+storozh = ["data/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

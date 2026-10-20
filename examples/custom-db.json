@@ -1,0 +1,8 @@
+{
+  "name": "demo-db",
+  "version": "1",
+  "signatures": [
+    {"name": "Demo.FakeTrojan", "type": "string", "value": "STOROZH-DEMO-MARKER"},
+    {"name": "Demo.UPXMarker", "type": "hex", "value": "55 50 58 21 ?? [0-8] 0D 0A"}
+  ]
+}

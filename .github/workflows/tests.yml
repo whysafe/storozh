@@ -1,0 +1,24 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e ".[dev]"
+      - run: pytest -q
+      - name: Smoke test on the demo folder
+        run: |
+          python examples/make_demo.py /tmp/demo
+          storozh scan /tmp/demo --db examples/custom-db.json --html /tmp/report.html --no-color || test $? -eq 1
+          test -s /tmp/report.html
